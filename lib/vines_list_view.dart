@@ -8,8 +8,8 @@ class VinesListProviderView extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => VinesListModel(),
       child: VinesListView<String>(
-        data: ["ssss"],
-        itemWidth: 80,
+        data: List.generate(15, (index) => "index"),
+        itemWidth: 60,
       ),
     );
   }
@@ -33,13 +33,50 @@ class VinesListView<T> extends StatefulWidget {
 
 class _VinesListViewState extends State<VinesListView> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<VinesListModel>()
+        ..calculatePosition(4);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     context.watch<VinesListModel>()
-      ..set(widget.data)
-      ..setContext(context)
-      ..calculateList(widget.itemWidth);
-    return Container(
-      color: Colors.red,
+      ..setContext(context, widget.data.length, widget.itemWidth);
+
+    return Consumer<VinesListModel>(
+      builder: (context, model, child) => GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onVerticalDragUpdate: (details){
+          model.updateDyDistance(details.delta.dy);
+        },
+        child: Stack(
+          children: _generateWidgetList(model),
+        ),
+      ),
     );
+  }
+
+  List<Widget> _generateWidgetList(VinesListModel model) {
+    List widgetList = <Widget>[];
+    if(model.offsetList.isEmpty){
+      widgetList.add(SizedBox.shrink());
+      return widgetList;
+    }
+    for (int i = 0; i < widget.data.length; i++) {
+      var offset = model.offsetList[i] ?? Offset.zero;
+      var transform = Positioned(
+          bottom: offset.dy - model.dyDistance,
+          left: offset.dx - widget.itemWidth / 2,
+          child: Container(
+            color: Colors.red,
+            width: widget.itemWidth,
+            height: widget.itemWidth,
+          ));
+      widgetList.add(transform);
+    }
+    return widgetList;
   }
 }
