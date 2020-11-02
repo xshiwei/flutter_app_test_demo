@@ -66,4 +66,9 @@ class CountModel with ChangeNotifier {
     _count++;
     notifyListeners();
   }
+
+  void reduceCounter() {
+    _count--;
+    notifyListeners();
+  }
 }

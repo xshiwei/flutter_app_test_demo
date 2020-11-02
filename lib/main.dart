@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_test_demo/animation_test.dart';
+import 'package:provider/provider.dart';
 
 import 'home_page.dart';
+import 'provider_test.dart';
 import 'vines_list_view.dart';
 
 void main() {
@@ -17,7 +20,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: VinesListProviderView(),
+      home: ChangeNotifierProvider(
+          create: (_) => CountModel(),
+          child: AnimationTest()),
     );
   }
 }
