@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_test_demo/animation_test.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_app_test_demo/painter/handle_widget.dart';
+import 'package:flutter_app_test_demo/painter/pic_man.dart';
 
-import 'home_page.dart';
-import 'provider_test.dart';
-import 'vines_list_view.dart';
+import 'animation/animation_test.dart';
+import 'listview/vines_list_view.dart';
+import 'provider/provider_list.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,9 +20,58 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ChangeNotifierProvider(
-          create: (_) => CountModel(),
-          child: AnimationTest()),
+      home: PageList(),
     );
   }
 }
+
+class PageList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverSafeArea(
+            sliver: SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  RaisedButton(
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => AnimationTest()));
+                    },
+                    child: Text("Animation"),
+                  ),
+                  RaisedButton(
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => VinesListProviderView()));
+                    },
+                    child: Text("VinesListView"),
+                  ),
+                  RaisedButton(
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => ProviderList()));
+                    },
+                    child: Text("Provider"),
+                  ),
+                  RaisedButton(
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => PicMan()));
+                    },
+                    child: Text("PicMan"),
+                  ),
+                  RaisedButton(
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => HandleWidget()));
+                    },
+                    child: Text("HandleWidget"),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+

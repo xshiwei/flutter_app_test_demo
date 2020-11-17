@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_test_demo/vines_list_model.dart';
+import 'package:flutter_app_test_demo/listview/vines_list_model.dart';
 import 'package:provider/provider.dart';
 
 class VinesListProviderView extends StatelessWidget {

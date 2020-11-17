@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_test_demo/home_page.dart';
 import 'package:provider/provider.dart';
 
-class ProviderTest extends StatefulWidget {
-  @override
-  _ProviderTestState createState() => _ProviderTestState();
-}
+import 'model/count_model.dart';
 
-class _ProviderTestState extends State<ProviderTest> {
+class ProviderTest2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     debugPrint("ProviderTest build");
@@ -21,9 +17,9 @@ class _ProviderTestState extends State<ProviderTest> {
               builder: (_, count, child) => Text("count--> ${count}"),
               selector: (_, model) => model.count,
             ),
-            // Consumer<CountModel>(
-            //   builder: (_, model, child) => Text("count--> ${model.count}"),
-            // ),
+            Consumer<CountModel>(
+              builder: (_, model, child) => Text("count--> ${model.count}"),
+            ),
             AddButton(),
             ReduceButton(),
           ],
@@ -53,17 +49,13 @@ class AddButton extends StatelessWidget {
   }
 }
 
-class ReduceButton extends StatefulWidget {
-  @override
-  _ReduceButtonState createState() => _ReduceButtonState();
-}
-
-class _ReduceButtonState extends State<ReduceButton> {
+class ReduceButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     debugPrint("ReduceButton build");
     var model = Provider.of<CountModel>(context, listen: false);
 
+    //context.select 会导致build重建，和watch唯一不同的是它可以只监听某个值
     return RaisedButton(
       onPressed: model.reduceCounter,
       child: Text("reduce --> ${context.select<CountModel, int>((value) => value.count)}"),

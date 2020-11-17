@@ -9,19 +9,20 @@ class AnimationTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Stack(
-          children: [
-            // Align(
-            //   alignment: Alignment.topCenter,
-            //   child: _Anim2Column(),
-            // ),
-            Align(
-              alignment: Alignment(-0.7, 0.7),
-              child: _Anim3(),
-            )
-          ],
-        ),
+      body: CustomScrollView(
+        slivers: [
+          SliverSafeArea(
+            sliver: SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  _Anim1(),
+                  _Anim2Column(),
+                  _Anim3(),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -191,3 +192,8 @@ class _Anim3Stop extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
