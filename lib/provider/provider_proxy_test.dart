@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_test_demo/provider/model/count_model.dart';
-import 'package:flutter_app_test_demo/provider/model/proxy_model.dart';
+import 'package:flutter_app_test_demo/provider/models/count_model.dart';
+import 'package:flutter_app_test_demo/provider/models/proxy_model.dart';
 import 'package:provider/provider.dart';
 
 class ProviderProxyTest extends StatelessWidget {
@@ -32,7 +32,6 @@ class _Title extends StatelessWidget {
   }
 }
 
-
 class ChangeNotifierProxyTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -61,4 +60,3 @@ class _Title2 extends StatelessWidget {
     return Text('${context.watch<ProxyModel>().title}');
   }
 }
-

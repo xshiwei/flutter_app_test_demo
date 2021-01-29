@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'model/count_model.dart';
+import 'models/count_model.dart';
 
 class ProviderTest2 extends StatelessWidget {
   @override

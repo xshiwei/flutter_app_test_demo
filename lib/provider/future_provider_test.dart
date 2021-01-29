@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_test_demo/provider/model/future_model.dart';
+import 'package:flutter_app_test_demo/provider/models/future_model.dart';
 import 'package:provider/provider.dart';
 
 class FutureProviderTest extends StatelessWidget {

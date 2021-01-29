@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_test_demo/provider/model/count_model.dart';
+import 'package:flutter_app_test_demo/provider/models/count_model.dart';
 
 class ProxyData{
   const ProxyData(this._value);

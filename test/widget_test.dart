@@ -6,6 +6,7 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app_test_demo/test/test_simple_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_app_test_demo/main.dart';
@@ -26,5 +27,14 @@ void main() {
     // Verify that our counter has incremented.
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
+  });
+
+  testWidgets('MyWidget has a title and message', (tester) async {
+    await tester.pumpWidget(TestSimpleWidget(title: 'T', message: 'M'));
+    final titleFinder = find.text('T');
+    final messageFinder = find.text('M');
+
+    expect(titleFinder, findsOneWidget);
+    expect(messageFinder, findsOneWidget);
   });
 }

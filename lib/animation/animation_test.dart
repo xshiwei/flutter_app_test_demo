@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_test_demo/animation/test_message_tip.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
@@ -18,6 +19,7 @@ class AnimationTest extends StatelessWidget {
                   _Anim1(),
                   _Anim2Column(),
                   _Anim3(),
+                  TestMessageTip(),
                 ],
               ),
             ),

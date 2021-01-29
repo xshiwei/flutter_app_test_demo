@@ -1,0 +1,43 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_umplus (1.1.0):
+    - Flutter
+    - "UMCAnalyticsGame (= 7.1.1+G)"
+    - UMCCommon
+    - UMCCommonLog
+    - UMCErrorCatch
+  - "UMCAnalyticsGame (7.1.1+G)":
+    - UMCCommon
+  - UMCCommon (7.1.3)
+  - UMCCommonLog (2.0.0)
+  - UMCErrorCatch (1.0.0):
+    - UMCCommon
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_umplus (from `.symlinks/plugins/flutter_umplus/ios`)
+
+SPEC REPOS:
+  trunk:
+    - UMCAnalyticsGame
+    - UMCCommon
+    - UMCCommonLog
+    - UMCErrorCatch
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_umplus:
+    :path: ".symlinks/plugins/flutter_umplus/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_umplus: a1ef0410a92b12f3bab4ec4f7fa02d74eae1bc3a
+  UMCAnalyticsGame: 259e3449bf2a9ac3768883301e1f79116c843f1a
+  UMCCommon: 0cb2629b93884531621100ed66ff2bca8b181f1f
+  UMCCommonLog: 9b7ddde5d14a52fc1986ba5ac3121b8b2f433638
+  UMCErrorCatch: 51f1b68f920233e90a3fa6d51f0456174507ec78
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.0.beta.2

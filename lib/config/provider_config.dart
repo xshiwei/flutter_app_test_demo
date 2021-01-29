@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_app_test_demo/provider/model/future_model.dart';
-import 'package:flutter_app_test_demo/provider/model/proxy_model.dart';
+import 'package:flutter_app_test_demo/provider/cart/models/cart.dart';
+import 'package:flutter_app_test_demo/provider/cart/models/catalog.dart';
+import 'package:flutter_app_test_demo/provider/models/future_model.dart';
+import 'package:flutter_app_test_demo/provider/models/proxy_model.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/model/count_model.dart';
+import '../provider/models/count_model.dart';
 
 class ProviderConfig {
   factory ProviderConfig() => _getInstance();
@@ -34,7 +36,8 @@ class ProviderConfig {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CountModel()),
-        //使用这个方式，可以重新构建ProxyData，并且可以直接使用Provider.of<ProxyData)(lister: false)拿到这个对象
+        //使用这个方式，可以重新构建ProxyData，并且可以直接使用Provider.of<ProxyData)(lister: false)拿到这个对象,
+        //当CountModel重建会调用update方法
         ProxyProvider<CountModel, ProxyData>(update: (_, count, __) => ProxyData(count.count)),
       ],
       child: child,
@@ -85,5 +88,16 @@ class ProviderConfig {
     );
   }
 
-
+  Widget getCatalogModel({@required Widget child}) {
+    return MultiProvider(
+      providers: [
+        Provider<CatalogModel>(create: (_) => CatalogModel()),
+        ChangeNotifierProxyProvider<CatalogModel, CartModel>(
+          create: (context) => CartModel(),
+          update: (_, catalog, cart) => cart..catalog = catalog
+        )
+      ],
+      child: child,
+    );
+  }
 }

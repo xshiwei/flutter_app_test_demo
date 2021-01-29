@@ -4,11 +4,27 @@ import 'package:provider/provider.dart';
 
 import 'models/count_model.dart';
 
-class ProviderTest1 extends StatelessWidget {
+class ProviderTest3 extends StatefulWidget {
+  @override
+  _ProviderTest3State createState() => _ProviderTest3State();
+}
+
+class _ProviderTest3State extends State<ProviderTest3> {
+  final ValueNotifier<int> _notifier = ValueNotifier(0);
+  int _number = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _notifier.value = _number;
+  }
+
   @override
   Widget build(BuildContext context) {
-    debugPrint("home build");
-    return Scaffold(
+    debugPrint("add");
+    return ValueListenableBuilder(
+      valueListenable: _notifier,
+      builder: (_, value ,child) => Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -16,30 +32,36 @@ class ProviderTest1 extends StatelessWidget {
               Text(
                 'You have pushed the button this many times:',
               ),
-              const Count(),
+              _Count(
+                count: value,
+              ),
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => context.read<CountModel>().incrementCounter(),
+          onPressed: () {
+            _number ++;
+            _notifier.value = _number;
+          },
           tooltip: 'Increment',
           child: Icon(Icons.add),
         ),
+      ),
     );
   }
 }
 
-class Count extends StatelessWidget {
-  const Count({Key key}) : super(key: key);
+class _Count extends StatelessWidget {
+  _Count({Key key, this.count}) : super(key: key);
+
+  final int count;
 
   @override
   Widget build(BuildContext context) {
     debugPrint("count build");
     return Text(
         //context.watch会导致build重建
-        '${context.watch<CountModel>().count}',
+        '${count}',
         style: Theme.of(context).textTheme.headline4);
   }
 }
-
-
