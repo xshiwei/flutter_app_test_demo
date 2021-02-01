@@ -60,6 +60,7 @@ class _Anim2Column extends StatelessWidget {
           _Anim2(),
           _Anim2Play(),
           _Anim2Stop(),
+          _Anim2Reverse(),
         ],
       ),
     );
@@ -73,38 +74,24 @@ class _Anim2 extends StatelessWidget {
     ..add(Anim2Enum.width, 100.0.tweenTo(200.0), 1.seconds)
     ..add(Anim2Enum.width, 200.0.tweenTo(200.0), 2.seconds)
     ..add(Anim2Enum.width, 200.0.tweenTo(100.0), 1.seconds)
-    ..add(Anim2Enum.color, Colors.red.tweenTo(Colors.red), 3.seconds)
-    ..add(Anim2Enum.color, Colors.red.tweenTo(Colors.blue), 1.seconds);
-
-  final _rotateTween = MultiTween<DefaultAnimationProperties>()
-    ..add(DefaultAnimationProperties.rotation, 0.1.tweenTo(0.15), 30.milliseconds)
-    ..add(DefaultAnimationProperties.rotation, 0.15.tweenTo(0.1), 30.milliseconds)
-    ..add(DefaultAnimationProperties.rotation, 0.1.tweenTo(0.05), 30.milliseconds)
-    ..add(DefaultAnimationProperties.rotation, 0.05.tweenTo(0.1), 30.milliseconds);
+    ..add(Anim2Enum.color, Colors.red.tweenTo(Colors.amberAccent), 3.seconds)
+    ..add(Anim2Enum.color, Colors.amberAccent.tweenTo(Colors.blue), 1.seconds);
 
   @override
   Widget build(BuildContext context) {
     debugPrint("anim2 build");
-    return LoopAnimation<MultiTweenValues<DefaultAnimationProperties>>(
-      tween: _rotateTween,
-      duration: _rotateTween.duration,
-      builder: (_, child, value) => Transform.rotate(
-        angle: value.get(DefaultAnimationProperties.rotation),
-        child: child,
-      ),
-      child: CustomAnimation<MultiTweenValues<Anim2Enum>>(
-          tween: _tween,
-          control: Provider.of<Anim2Model>(context).control,
-          delay: 2.seconds,
-          duration: _tween.duration,
-          builder: (_, child, value) => Container(
-                color: value.get(Anim2Enum.color),
-                width: value.get(Anim2Enum.width),
-                height: value.get(Anim2Enum.width),
-                child: child,
-              ),
-          child: Text("Anim2")),
-    );
+    return CustomAnimation<MultiTweenValues<Anim2Enum>>(
+        tween: _tween,
+        control: Provider.of<Anim2Model>(context).control,
+        delay: 2.seconds,
+        duration: _tween.duration,
+        builder: (_, child, value) => Container(
+              color: value.get(Anim2Enum.color),
+              width: value.get(Anim2Enum.width),
+              height: value.get(Anim2Enum.width),
+              child: child,
+            ),
+        child: Text("Anim2"));
   }
 }
 
@@ -127,6 +114,17 @@ class _Anim2Stop extends StatelessWidget {
     );
   }
 }
+
+class _Anim2Reverse extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(
+      onPressed: Provider.of<Anim2Model>(context, listen: false).reverse,
+      child: Text("reverse"),
+    );
+  }
+}
+
 
 class _Anim3 extends StatelessWidget {
   @override

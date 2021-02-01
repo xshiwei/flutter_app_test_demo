@@ -7,12 +7,17 @@ class Anim2Model with ChangeNotifier {
   CustomAnimationControl get control => _control;
 
   void play() {
-    _control = CustomAnimationControl.PLAY_FROM_START;
+    _control = CustomAnimationControl.PLAY;
     notifyListeners();
   }
 
   void stop() {
     _control = CustomAnimationControl.STOP;
+    notifyListeners();
+  }
+
+  void reverse() {
+    _control = CustomAnimationControl.PLAY_REVERSE;
     notifyListeners();
   }
 }
