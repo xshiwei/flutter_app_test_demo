@@ -9,9 +9,14 @@ class HandleWidget extends StatefulWidget {
   ///手势圆的半径
   final double handleRadius;
 
-  final Function(double rotate, double distance) onMove;
+  final Function(double rotate, double distance)? onMove;
 
-  HandleWidget({Key key, this.size = 120.0, this.handleRadius = 10.0,@required this.onMove}) : super(key: key);
+  HandleWidget({
+    Key? key,
+    this.size = 120.0,
+    this.handleRadius = 10.0,
+    this.onMove,
+  }) : super(key: key);
 
   @override
   _HandleWidgetState createState() => _HandleWidgetState();
@@ -29,7 +34,7 @@ class _HandleWidgetState extends State<HandleWidget> {
         onPanEnd: onPanEnd,
         onPanUpdate: onPanUpdate,
         child: CustomPaint(
-          painter: _HandlePainter(handR: widget.handleRadius,offset: _offset),
+          painter: _HandlePainter(handR: widget.handleRadius, offset: _offset),
           size: Size(widget.size, widget.size),
         ),
       ),
@@ -58,9 +63,7 @@ class _HandleWidgetState extends State<HandleWidget> {
       dx = bgR * cos(thta);
       dy = -bgR * sin(thta);
     }
-    if(widget.onMove != null){
-      widget.onMove(thta, d);
-    }
+    widget.onMove?.call(thta, d);
     _offset.value = Offset(dx, dy);
   }
 }
@@ -73,7 +76,11 @@ class _HandlePainter extends CustomPainter {
 
   Paint _paint = Paint();
 
-  _HandlePainter({this.handR, this.offset, this.color = Colors.blue}) : super(repaint: offset);
+  _HandlePainter({
+    required this.handR,
+    required this.offset,
+    this.color = Colors.blue,
+  }) : super(repaint: offset);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -93,6 +100,8 @@ class _HandlePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _HandlePainter oldDelegate) {
-    return oldDelegate.handR != handR || oldDelegate.offset != offset || oldDelegate.color != color;
+    return oldDelegate.handR != handR ||
+        oldDelegate.offset != offset ||
+        oldDelegate.color != color;
   }
 }

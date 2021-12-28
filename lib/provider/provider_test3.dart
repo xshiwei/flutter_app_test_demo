@@ -1,8 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import 'models/count_model.dart';
 
 class ProviderTest3 extends StatefulWidget {
   @override
@@ -21,10 +17,9 @@ class _ProviderTest3State extends State<ProviderTest3> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("add");
-    return ValueListenableBuilder(
+    return ValueListenableBuilder<int>(
       valueListenable: _notifier,
-      builder: (_, value ,child) => Scaffold(
+      builder: (_, value, child) => Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +35,7 @@ class _ProviderTest3State extends State<ProviderTest3> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            _number ++;
+            _number++;
             _notifier.value = _number;
           },
           tooltip: 'Increment',
@@ -52,7 +47,10 @@ class _ProviderTest3State extends State<ProviderTest3> {
 }
 
 class _Count extends StatelessWidget {
-  _Count({Key key, this.count}) : super(key: key);
+  _Count({
+    Key? key,
+    required this.count,
+  }) : super(key: key);
 
   final int count;
 
@@ -61,7 +59,7 @@ class _Count extends StatelessWidget {
     debugPrint("count build");
     return Text(
         //context.watch会导致build重建
-        '${count}',
+        '$count',
         style: Theme.of(context).textTheme.headline4);
   }
 }

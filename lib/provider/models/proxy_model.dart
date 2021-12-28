@@ -11,7 +11,7 @@ class ProxyData{
 
 class ProxyModel extends ChangeNotifier{
 
-  CountModel _countModel;
+  CountModel? _countModel;
 
   void updateCountModel(CountModel countModel){
     this._countModel = countModel;
@@ -19,5 +19,5 @@ class ProxyModel extends ChangeNotifier{
     notifyListeners();
   }
 
-  String get title => 'You clicked ${_countModel.count} times';
+  String get title => 'You clicked ${_countModel?.count} times';
 }

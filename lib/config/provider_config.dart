@@ -12,18 +12,18 @@ class ProviderConfig {
 
   static ProviderConfig get instance => _getInstance();
 
-  static ProviderConfig _instance;
+  static ProviderConfig? _instance;
 
   static ProviderConfig _getInstance() {
     if (_instance == null) {
       _instance = ProviderConfig._internal();
     }
-    return _instance;
+    return _instance!;
   }
 
   ProviderConfig._internal();
 
-  Widget getCountModel({@required Widget child}) {
+  Widget getCountModel({required Widget child}) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CountModel()),
@@ -32,7 +32,7 @@ class ProviderConfig {
     );
   }
 
-  Widget getProviderProxy({@required Widget child}) {
+  Widget getProviderProxy({required Widget child}) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CountModel()),
@@ -44,21 +44,21 @@ class ProviderConfig {
     );
   }
 
-  Widget getChangeNotifierProviderProxy({@required Widget child}) {
+  Widget getChangeNotifierProviderProxy({required Widget child}) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CountModel()),
         //proxyModel依赖于CountModel中的内容。
-        ChangeNotifierProxyProvider<CountModel, ProxyModel>(
+        ChangeNotifierProxyProvider<CountModel, ProxyModel?>(
           create: (_) => ProxyModel(),
-          update: (_, count, proxyModel) => proxyModel..updateCountModel(count),
+          update: (_, count, proxyModel) => proxyModel?..updateCountModel(count),
         ),
       ],
       child: child,
     );
   }
 
-  Widget getFutureProvider({@required Widget child}) {
+  Widget getFutureProvider({required Widget child}) {
     return MultiProvider(
       providers: [
         //主要用于异步执行任务，并且可以直接通过Provider.of<int>(context)找到
@@ -75,7 +75,7 @@ class ProviderConfig {
     );
   }
 
-  Widget getStreamProvider({@required Widget child}) {
+  Widget getStreamProvider({required Widget child}) {
     return MultiProvider(
       providers: [
         //主要用于异步执行任务流，并且可以直接通过Provider.of<int>(context)找到
@@ -88,13 +88,13 @@ class ProviderConfig {
     );
   }
 
-  Widget getCatalogModel({@required Widget child}) {
+  Widget getCatalogModel({required Widget child}) {
     return MultiProvider(
       providers: [
         Provider<CatalogModel>(create: (_) => CatalogModel()),
-        ChangeNotifierProxyProvider<CatalogModel, CartModel>(
+        ChangeNotifierProxyProvider<CatalogModel, CartModel?>(
           create: (context) => CartModel(),
-          update: (_, catalog, cart) => cart..catalog = catalog
+          update: (_, catalog, cart) => cart?..catalog = catalog
         )
       ],
       child: child,

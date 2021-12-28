@@ -3,26 +3,31 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class VinesListModel extends ChangeNotifier {
-  ///关卡数据
-  int _length;
+  VinesListModel() {
+    this._offsetList = <Offset>[];
+    this._random = Random(30);
+  }
 
-  List<Offset> _offsetList;
+  ///关卡数据
+  int _length = 0;
+
+  late List<Offset> _offsetList;
 
   List<Offset> get offsetList => _offsetList;
 
-  BuildContext _context;
+  late BuildContext _context;
 
   ///表示半个周期的最大宽度
-  double _maxWidth;
+  late double _maxWidth;
 
   ///表示半个周期的最大高度
-  double _maxHeight;
+  double _maxHeight = 0.0;
 
   ///表示半个周期 0 到 pi/2 的直线距离
-  double _distance;
+  double _distance = 0.0;
 
   ///关卡控件的大小，正方形
-  double _itemWidth;
+  double _itemWidth = 0.0;
 
   ///表示sin函数的快慢系数
   double _speedParameter = 1;
@@ -30,14 +35,9 @@ class VinesListModel extends ChangeNotifier {
   ///表示最终的位置
   double _finallyYPosition = 0.0;
 
-  Random _random;
+  late final Random _random;
 
   double dyDistance = 0.0;
-
-  VinesListModel() {
-    this._offsetList = <Offset>[];
-    this._random = Random(30);
-  }
 
   void setContext(BuildContext context, int length, double itemWidth) {
     this._context = context;
@@ -50,6 +50,7 @@ class VinesListModel extends ChangeNotifier {
   void calculatePosition(double speedParameter) {
     //一个计数器，计算当前是哪个开口方向
     var count = 1;
+
     ///第一个不用计算位置
     _addOffset(_maxWidth, _finallyYPosition);
 
@@ -73,11 +74,11 @@ class VinesListModel extends ChangeNotifier {
   }
 
   ///更新distance
-  void updateDyDistance(double distance){
+  void updateDyDistance(double distance) {
     dyDistance += distance;
-    if(dyDistance <= 0){
+    if (dyDistance <= 0) {
       dyDistance = 0;
-    }else if(dyDistance > _finallyYPosition){
+    } else if (dyDistance > _finallyYPosition) {
       dyDistance = _finallyYPosition;
     }
     notifyListeners();

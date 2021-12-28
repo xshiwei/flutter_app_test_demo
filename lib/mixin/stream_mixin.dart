@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 mixin StreamMixin<T extends StatefulWidget> on State<T>{
 
-  StreamController _controller;
+  late StreamController _controller;
 
   StreamController get controller => _controller;
 

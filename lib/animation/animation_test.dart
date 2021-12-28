@@ -33,11 +33,11 @@ class AnimationTest extends StatelessWidget {
 class _Anim1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CustomAnimation<Color>(
-        tween: Colors.redAccent.tweenTo(Colors.blue),
+    return CustomAnimation<Color?>(
+        tween: Colors.greenAccent.tweenTo(Colors.blue),
         duration: 2.seconds,
         delay: 1.seconds,
-        control: CustomAnimationControl.LOOP,
+        control: CustomAnimationControl.loop,
         builder: (context, child, color) => Container(
               color: color,
               width: 100,
@@ -148,8 +148,8 @@ class _AnimRotation extends StatefulWidget {
 }
 
 class __AnimRotationState extends State<_AnimRotation> with AnimationMixin {
-  Animation<double> _rotation;
-  AnimationController _rotationController;
+  late Animation<double> _rotation;
+  late AnimationController _rotationController;
 
   @override
   void initState() {

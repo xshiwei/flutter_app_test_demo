@@ -54,7 +54,7 @@ class _Tip extends StatefulWidget {
 
 class __TipState extends State<_Tip> with AnimationMixin {
 
-  Animation _scale;
+  late Animation<double> _scale;
 
   @override
   void initState() {
@@ -80,22 +80,22 @@ class __TipState extends State<_Tip> with AnimationMixin {
 
 
 class TestMessageTipModel with ChangeNotifier {
-  AnimationController _controller;
+  AnimationController? _controller;
 
   void setController(AnimationController controller) {
     this._controller = controller;
   }
 
   void start() {
-    _controller.forward();
+    _controller?.forward();
   }
 
   void pause() {
-    _controller.stop();
+    _controller?.stop();
   }
 
   void reverse() {
-    _controller.reverse();
+    _controller?.reverse();
   }
 
 }

@@ -10,8 +10,8 @@ class PicMan extends StatefulWidget {
 }
 
 class _PicManState extends State<PicMan> with AnimationMixin {
-  Animation<double> angle;
-  Animation<Color> color;
+  late Animation<double> angle;
+  late Animation<Color?> color;
 
   @override
   void initState() {
@@ -27,7 +27,8 @@ class _PicManState extends State<PicMan> with AnimationMixin {
       color: Colors.white,
       alignment: Alignment.center,
       child: CustomPaint(
-        painter: _PicManPainter(color: color, angle: angle, repaint: controller),
+        painter:
+            _PicManPainter(color: color, angle: angle, repaint: controller),
         size: Size(100.0, 100.0),
       ),
     );
@@ -36,17 +37,21 @@ class _PicManState extends State<PicMan> with AnimationMixin {
 
 class _PicManPainter extends CustomPainter {
   ///颜色
-  final Animation<Color> color;
+  final Animation<Color?> color;
 
   ///角度
   final Animation<double> angle;
 
-  final Animation<double> repaint;
+  final Animation<double>? repaint;
 
   ///画笔
   Paint _paint = Paint();
 
-  _PicManPainter({@required this.color, @required this.angle,this.repaint}) : super(repaint: repaint);
+  _PicManPainter({
+    required this.color,
+    required this.angle,
+    this.repaint,
+  }) : super(repaint: repaint);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -65,12 +70,15 @@ class _PicManPainter extends CustomPainter {
   ///绘制头部
   void _drawHead(Canvas canvas, Size size) {
     var a = this.angle.value / 180 * pi;
-    var rect = Rect.fromCenter(center: Offset.zero, width: size.width, height: size.height);
-    canvas.drawArc(rect, a, 2 * pi - a.abs() * 2, true, _paint..color = color.value);
+    var rect = Rect.fromCenter(
+        center: Offset.zero, width: size.width, height: size.height);
+    canvas.drawArc(
+        rect, a, 2 * pi - a.abs() * 2, true, _paint..color = color.value!);
   }
 
   ///绘制眼睛
   void _drawEye(Canvas canvas, double radius) {
-    canvas.drawCircle(Offset(radius * 0.15, radius * -0.6), radius * 0.12, _paint..color = Colors.white);
+    canvas.drawCircle(Offset(radius * 0.15, radius * -0.6), radius * 0.12,
+        _paint..color = Colors.white);
   }
 }

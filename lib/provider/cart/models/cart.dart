@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_test_demo/provider/cart/models/catalog.dart';
 
 class CartModel with ChangeNotifier {
-  CatalogModel _catalog;
+  late CatalogModel _catalog;
 
   final List<int> _itemIds = [];
 
   CatalogModel get catalog => _catalog;
 
   set catalog(CatalogModel newCatalog){
-    assert(newCatalog != null);
-    assert(_itemIds.every((id) => newCatalog.getById(id) != null),
-    'The catalog $newCatalog does not have one of $_itemIds in it.');
     _catalog = newCatalog;
     notifyListeners();
   }

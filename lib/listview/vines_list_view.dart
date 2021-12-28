@@ -22,7 +22,7 @@ class VinesListView<T> extends StatefulWidget {
   ///item的宽度
   final double itemWidth;
 
-  const VinesListView({Key key, @required this.data, this.itemWidth})
+  const VinesListView({Key? key, required this.data, required this.itemWidth})
       : assert(data != null),
         assert(itemWidth >= 0),
         super(key: key);
@@ -35,9 +35,8 @@ class _VinesListViewState extends State<VinesListView> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.read<VinesListModel>()
-        ..calculatePosition(4);
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      context.read<VinesListModel>()..calculatePosition(4);
     });
   }
 
@@ -49,7 +48,7 @@ class _VinesListViewState extends State<VinesListView> {
     return Consumer<VinesListModel>(
       builder: (context, model, child) => GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onVerticalDragUpdate: (details){
+        onVerticalDragUpdate: (details) {
           model.updateDyDistance(details.delta.dy);
         },
         child: Stack(
@@ -60,13 +59,13 @@ class _VinesListViewState extends State<VinesListView> {
   }
 
   List<Widget> _generateWidgetList(VinesListModel model) {
-    List widgetList = <Widget>[];
-    if(model.offsetList.isEmpty){
+    final widgetList = <Widget>[];
+    if (model.offsetList.isEmpty) {
       widgetList.add(SizedBox.shrink());
       return widgetList;
     }
     for (int i = 0; i < widget.data.length; i++) {
-      var offset = model.offsetList[i] ?? Offset.zero;
+      var offset = model.offsetList[i];
       var transform = Positioned(
           bottom: offset.dy - model.dyDistance,
           left: offset.dx - widget.itemWidth / 2,

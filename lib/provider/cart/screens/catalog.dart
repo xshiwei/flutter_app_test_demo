@@ -43,7 +43,7 @@ class _MyAppBar extends StatelessWidget {
 }
 
 class _MyListItem extends StatelessWidget {
-  const _MyListItem(this.index, {Key key}) : super(key: key);
+  const _MyListItem(this.index, {Key? key}) : super(key: key);
 
   final int index;
 
@@ -77,7 +77,7 @@ class _MyListItem extends StatelessWidget {
 }
 
 class _AddButton extends StatelessWidget {
-  const _AddButton({Key key, this.item}) : super(key: key);
+  const _AddButton({Key? key, required this.item}) : super(key: key);
 
   final Item item;
 

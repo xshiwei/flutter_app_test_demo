@@ -4,7 +4,11 @@ class TestSimpleWidget extends StatelessWidget {
   final String title;
   final String message;
 
-  const TestSimpleWidget({Key key, this.title, this.message}) : super(key: key);
+  const TestSimpleWidget({
+    Key? key,
+    required this.title,
+    required this.message,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
