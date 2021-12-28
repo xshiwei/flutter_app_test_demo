@@ -5,6 +5,8 @@ import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 class PicMan extends StatefulWidget {
+  const PicMan({Key? key}) : super(key: key);
+
   @override
   _PicManState createState() => _PicManState();
 }
@@ -18,7 +20,7 @@ class _PicManState extends State<PicMan> with AnimationMixin {
     super.initState();
     angle = 10.0.tweenTo(40).animatedBy(controller);
     color = Colors.blue.tweenTo(Colors.red).animatedBy(controller);
-    controller.repeat(reverse: true, period: Duration(seconds: 1));
+    controller.repeat(reverse: true, period: const Duration(seconds: 1));
   }
 
   @override
@@ -29,7 +31,7 @@ class _PicManState extends State<PicMan> with AnimationMixin {
       child: CustomPaint(
         painter:
             _PicManPainter(color: color, angle: angle, repaint: controller),
-        size: Size(100.0, 100.0),
+        size: const Size(100.0, 100.0),
       ),
     );
   }
@@ -45,7 +47,7 @@ class _PicManPainter extends CustomPainter {
   final Animation<double>? repaint;
 
   ///画笔
-  Paint _paint = Paint();
+  final Paint _paint = Paint();
 
   _PicManPainter({
     required this.color,
@@ -69,7 +71,7 @@ class _PicManPainter extends CustomPainter {
 
   ///绘制头部
   void _drawHead(Canvas canvas, Size size) {
-    var a = this.angle.value / 180 * pi;
+    var a = angle.value / 180 * pi;
     var rect = Rect.fromCenter(
         center: Offset.zero, width: size.width, height: size.height);
     canvas.drawArc(

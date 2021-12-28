@@ -14,7 +14,7 @@ import 'package:flutter_app_test_demo/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(const MyApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
@@ -30,7 +30,7 @@ void main() {
   });
 
   testWidgets('MyWidget has a title and message', (tester) async {
-    await tester.pumpWidget(TestSimpleWidget(title: 'T', message: 'M'));
+    await tester.pumpWidget(const TestSimpleWidget(title: 'T', message: 'M'));
     final titleFinder = find.text('T');
     final messageFinder = find.text('M');
 

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../mixin/stream_mixin.dart';
 
 class StreamTest extends StatefulWidget {
+  const StreamTest({Key? key}) : super(key: key);
+
   @override
   _StreamTestState createState() => _StreamTestState();
 }
@@ -15,16 +17,16 @@ class _StreamTestState extends State<StreamTest> with StreamMixin {
     return Scaffold(
       body: Column(
         children: [
-          StreamBuilder(
+          StreamBuilder<dynamic>(
             initialData: 0,
             stream: controller.stream,
             builder: (_, snap) => Text(
                 "${snap.data}"
             ),
           ),
-          RaisedButton(
+          ElevatedButton(
             onPressed: _onAddCount,
-            child: Text("add"),
+            child: const Text("add"),
           )
         ],
       ),

@@ -11,7 +11,7 @@ class HandleWidget extends StatefulWidget {
 
   final Function(double rotate, double distance)? onMove;
 
-  HandleWidget({
+  const HandleWidget({
     Key? key,
     this.size = 120.0,
     this.handleRadius = 10.0,
@@ -23,7 +23,7 @@ class HandleWidget extends StatefulWidget {
 }
 
 class _HandleWidgetState extends State<HandleWidget> {
-  ValueNotifier<Offset> _offset = ValueNotifier(Offset.zero);
+  final ValueNotifier<Offset> _offset = ValueNotifier(Offset.zero);
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class _HandlePainter extends CustomPainter {
   final ValueNotifier<Offset> offset;
   final Color color;
 
-  Paint _paint = Paint();
+  final Paint _paint = Paint();
 
   _HandlePainter({
     required this.handR,

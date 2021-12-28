@@ -4,6 +4,8 @@ import 'package:flutter_app_test_demo/provider/models/proxy_model.dart';
 import 'package:provider/provider.dart';
 
 class ProviderProxyTest extends StatelessWidget {
+  const ProviderProxyTest({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,11 +13,11 @@ class ProviderProxyTest extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 Provider.of<CountModel>(context, listen: false).incrementCounter();
               },
-              child: Text('add count'),
+              child: const Text('add count'),
             ),
             _Title(),
           ],
@@ -28,11 +30,13 @@ class ProviderProxyTest extends StatelessWidget {
 class _Title extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Text('${context.watch<ProxyData>().title}');
+    return Text(context.watch<ProxyData>().title);
   }
 }
 
 class ChangeNotifierProxyTest extends StatelessWidget {
+  const ChangeNotifierProxyTest({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,11 +44,11 @@ class ChangeNotifierProxyTest extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 Provider.of<CountModel>(context, listen: false).incrementCounter();
               },
-              child: Text('add count'),
+              child: const Text('add count'),
             ),
             _Title2(),
           ],
@@ -57,6 +61,6 @@ class ChangeNotifierProxyTest extends StatelessWidget {
 class _Title2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Text('${context.watch<ProxyModel>().title}');
+    return Text(context.watch<ProxyModel>().title);
   }
 }

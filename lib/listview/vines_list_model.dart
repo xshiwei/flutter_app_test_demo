@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class VinesListModel extends ChangeNotifier {
   VinesListModel() {
-    this._offsetList = <Offset>[];
-    this._random = Random(30);
+    _offsetList = <Offset>[];
+    _random = Random(30);
   }
 
   ///关卡数据
@@ -40,10 +40,10 @@ class VinesListModel extends ChangeNotifier {
   double dyDistance = 0.0;
 
   void setContext(BuildContext context, int length, double itemWidth) {
-    this._context = context;
-    this._length = length;
-    this._itemWidth = itemWidth;
-    this._maxWidth = MediaQuery.of(_context).size.width / 2;
+    _context = context;
+    _length = length;
+    _itemWidth = itemWidth;
+    _maxWidth = MediaQuery.of(_context).size.width / 2;
   }
 
   ///暴露到外面的计算位置的方法
@@ -86,9 +86,9 @@ class VinesListModel extends ChangeNotifier {
 
   ///初始化基本数据
   void _initData(double speedParameter) {
-    this._speedParameter = speedParameter;
-    this._maxHeight = _getASin(1);
-    this._distance = sqrt(pow(_maxWidth, 2) + pow(_maxHeight, 2));
+    _speedParameter = speedParameter;
+    _maxHeight = _getASin(1);
+    _distance = sqrt(pow(_maxWidth, 2) + pow(_maxHeight, 2));
   }
 
   ///根据正弦函数计算各个数据的位置,y轴相当于sin函数的x轴，x轴相当于sin函数的y轴
@@ -101,8 +101,8 @@ class VinesListModel extends ChangeNotifier {
     //平均的x值
     var sinX = cycle / (2 * (halfNum - 1));
     var avgY = _maxHeight / (halfNum - 1);
-    var xPos;
-    var yPos;
+    double xPos = 0.0;
+    double yPos = 0.0;
     var count = 0;
     for (int i = 1; i <= oneNum; i++) {
       if ((i == oneNum && length >= oneItemNum)) {

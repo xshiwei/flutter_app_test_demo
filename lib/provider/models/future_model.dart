@@ -19,14 +19,14 @@ class FutureProviderModel {
   Future<FutureBean1> testFuture() {
     debugPrint("testFuture");
     return Future.delayed(1.seconds, () {
-      return FutureBean1(1);
+      return const FutureBean1(1);
     });
   }
 
   Future<FutureBean2> testFuture2() {
     debugPrint("testFuture2");
     return Future.delayed(3.seconds, () {
-      return FutureBean2(4);
+      return const FutureBean2(4);
     });
   }
 }

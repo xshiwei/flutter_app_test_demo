@@ -3,11 +3,13 @@ import 'package:flutter_app_test_demo/provider/cart/models/cart.dart';
 import 'package:provider/provider.dart';
 
 class MyCart extends StatelessWidget {
+  const MyCart({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Cart',
           style: TextStyle(fontSize: 22, color: Colors.black),
         ),
@@ -23,7 +25,7 @@ class MyCart extends StatelessWidget {
                 child: _CartList(),
               ),
             ),
-            Divider(height: 4, color: Colors.black),
+            const Divider(height: 4, color: Colors.black),
             _CartTotal()
           ],
         ),
@@ -43,9 +45,9 @@ class _CartList extends StatelessWidget {
       itemCount: cart.items.length,
       itemBuilder: (context, index) {
         return ListTile(
-          leading: Icon(Icons.done),
+          leading: const Icon(Icons.done),
           trailing: IconButton(
-            icon: Icon(Icons.remove_circle_outline),
+            icon: const Icon(Icons.remove_circle_outline),
             onPressed: () {
               cart.remove(cart.items[index]);
             },
@@ -76,13 +78,12 @@ class _CartTotal extends StatelessWidget {
             // The important thing is that it will not rebuild
             // the rest of the widgets in this build method.
             Consumer<CartModel>(builder: (context, cart, child) => Text('\$${cart.totalPrice}')),
-            SizedBox(width: 24),
-            FlatButton(
+            const SizedBox(width: 24),
+            ElevatedButton(
               onPressed: () {
                 context.read<CartModel>().refresh();
               },
-              color: Colors.white,
-              child: Text('BUY'),
+              child: const Text('BUY'),
             ),
           ],
         ),

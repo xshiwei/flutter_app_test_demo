@@ -3,6 +3,8 @@ import 'package:flutter_app_test_demo/provider/models/future_model.dart';
 import 'package:provider/provider.dart';
 
 class FutureProviderTest extends StatelessWidget {
+  const FutureProviderTest({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +22,8 @@ class FutureProviderTest extends StatelessWidget {
 }
 
 class StreamProviderTest extends StatelessWidget {
+  const StreamProviderTest({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

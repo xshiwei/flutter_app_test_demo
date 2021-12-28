@@ -26,7 +26,7 @@ class Anim3Model with ChangeNotifier {
   AnimationController? _controller;
 
   set controller(AnimationController controller) {
-    this._controller = controller;
+    _controller = controller;
   }
 
   void play() {

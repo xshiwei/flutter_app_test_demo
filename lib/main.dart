@@ -7,10 +7,12 @@ import 'listview/vines_list_view.dart';
 import 'provider/provider_list.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -20,12 +22,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: PageList(),
+      home: const PageList(),
     );
   }
 }
 
 class PageList extends StatelessWidget {
+  const PageList({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,35 +39,48 @@ class PageList extends StatelessWidget {
             sliver: SliverToBoxAdapter(
               child: Column(
                 children: [
-                  RaisedButton(
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => AnimationTest()));
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push<dynamic>(
+                          context,
+                          MaterialPageRoute<dynamic>(
+                              builder: (_) => const AnimationTest()));
                     },
-                    child: Text("Animation"),
+                    child: const Text("Animation"),
                   ),
-                  RaisedButton(
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => VinesListProviderView()));
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push<dynamic>(
+                          context,
+                          MaterialPageRoute<dynamic>(
+                              builder: (_) => const VinesListProviderView()));
                     },
-                    child: Text("VinesListView"),
+                    child: const Text("VinesListView"),
                   ),
-                  RaisedButton(
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => ProviderList()));
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push<dynamic>(
+                          context,
+                          MaterialPageRoute<dynamic>(
+                              builder: (_) => const ProviderList()));
                     },
-                    child: Text("Provider"),
+                    child: const Text("Provider"),
                   ),
-                  RaisedButton(
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => PicMan()));
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push<dynamic>(context,
+                          MaterialPageRoute<dynamic>(builder: (_) => const PicMan()));
                     },
-                    child: Text("PicMan"),
+                    child: const Text("PicMan"),
                   ),
-                  RaisedButton(
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => HandleWidget()));
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push<dynamic>(
+                          context,
+                          MaterialPageRoute<dynamic>(
+                              builder: (_) => const HandleWidget()));
                     },
-                    child: Text("HandleWidget"),
+                    child: const Text("HandleWidget"),
                   ),
                 ],
               ),
@@ -74,4 +91,3 @@ class PageList extends StatelessWidget {
     );
   }
 }
-

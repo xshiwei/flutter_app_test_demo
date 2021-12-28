@@ -14,7 +14,7 @@ class ProxyModel extends ChangeNotifier{
   CountModel? _countModel;
 
   void updateCountModel(CountModel countModel){
-    this._countModel = countModel;
+    _countModel = countModel;
     debugPrint("refresh");
     notifyListeners();
   }

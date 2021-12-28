@@ -11,6 +11,8 @@ import 'future_provider_test.dart';
 import 'provider_proxy_test.dart';
 
 class ProviderList extends StatelessWidget {
+  const ProviderList({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,77 +22,77 @@ class ProviderList extends StatelessWidget {
             sliver: SliverToBoxAdapter(
               child: Column(
                 children: [
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => ProviderConfig.instance.getCountModel(child: ProviderTest1()),
+                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
+                        builder: (_) => ProviderConfig.instance.getCountModel(child: const ProviderTest1()),
                       ));
                     },
-                    child: Text("Provider Test1"),
+                    child: const Text("Provider Test1"),
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => ProviderConfig.instance.getCountModel(child: ProviderTest2()),
+                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
+                        builder: (_) => ProviderConfig.instance.getCountModel(child: const ProviderTest2()),
                       ));
                     },
-                    child: Text("Provider Test2"),
+                    child: const Text("Provider Test2"),
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => ProviderConfig.instance.getCountModel(child: ProviderTest3()),
+                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
+                        builder: (_) => ProviderConfig.instance.getCountModel(child: const ProviderTest3()),
                       ));
                     },
-                    child: Text("Provider Test3"),
+                    child: const Text("Provider Test3"),
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => StreamTest(),
+                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
+                        builder: (_) => const StreamTest(),
                       ));
                     },
-                    child: Text("Stream Test"),
+                    child: const Text("Stream Test"),
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => ProviderConfig.instance.getProviderProxy(child: ProviderProxyTest()),
+                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
+                        builder: (_) => ProviderConfig.instance.getProviderProxy(child: const ProviderProxyTest()),
                       ));
                     },
-                    child: Text("Provider Proxy Test"),
+                    child: const Text("Provider Proxy Test"),
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => ProviderConfig.instance.getChangeNotifierProviderProxy(child: ChangeNotifierProxyTest()),
+                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
+                        builder: (_) => ProviderConfig.instance.getChangeNotifierProviderProxy(child: const ChangeNotifierProxyTest()),
                       ));
                     },
-                    child: Text("ChangeNotifier Proxy Test"),
+                    child: const Text("ChangeNotifier Proxy Test"),
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => ProviderConfig.instance.getFutureProvider(child: FutureProviderTest()),
+                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
+                        builder: (_) => ProviderConfig.instance.getFutureProvider(child: const FutureProviderTest()),
                       ));
                     },
-                    child: Text("Future Provider Test"),
+                    child: const Text("Future Provider Test"),
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => ProviderConfig.instance.getStreamProvider(child: StreamProviderTest()),
+                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
+                        builder: (_) => ProviderConfig.instance.getStreamProvider(child: const StreamProviderTest()),
                       ));
                     },
-                    child: Text("Stream Provider Test"),
+                    child: const Text("Stream Provider Test"),
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => ProviderConfig.instance.getCatalogModel(child: MyCatalog()),
+                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
+                        builder: (_) => ProviderConfig.instance.getCatalogModel(child: const MyCatalog()),
                       ));
                     },
-                    child: Text("MyCatalog"),
+                    child: const Text("MyCatalog"),
                   ),
                 ],
               ),

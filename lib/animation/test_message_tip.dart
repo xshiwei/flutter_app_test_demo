@@ -4,6 +4,8 @@ import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 class TestMessageTip extends StatelessWidget {
+  const TestMessageTip({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -25,19 +27,19 @@ class _AnimationColumn extends StatelessWidget {
               onPressed: () {
                 context.read<TestMessageTipModel>().start();
               },
-              child: Text('start'),
+              child: const Text('start'),
             )),
             Flexible(child: ElevatedButton(
               onPressed: () {
                 context.read<TestMessageTipModel>().pause();
               },
-              child: Text('stop'),
+              child: const Text('stop'),
             )),
             Flexible(child: ElevatedButton(
               onPressed: () {
                 context.read<TestMessageTipModel>().reverse();
               },
-              child: Text('reverse'),
+              child: const Text('reverse'),
             ))
           ],
         )
@@ -83,7 +85,7 @@ class TestMessageTipModel with ChangeNotifier {
   AnimationController? _controller;
 
   void setController(AnimationController controller) {
-    this._controller = controller;
+    _controller = controller;
   }
 
   void start() {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProviderTest3 extends StatefulWidget {
+  const ProviderTest3({Key? key}) : super(key: key);
+
   @override
   _ProviderTest3State createState() => _ProviderTest3State();
 }
@@ -24,7 +26,7 @@ class _ProviderTest3State extends State<ProviderTest3> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
+              const Text(
                 'You have pushed the button this many times:',
               ),
               _Count(
@@ -39,7 +41,7 @@ class _ProviderTest3State extends State<ProviderTest3> {
             _notifier.value = _number;
           },
           tooltip: 'Increment',
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
       ),
     );
@@ -47,7 +49,7 @@ class _ProviderTest3State extends State<ProviderTest3> {
 }
 
 class _Count extends StatelessWidget {
-  _Count({
+  const _Count({
     Key? key,
     required this.count,
   }) : super(key: key);

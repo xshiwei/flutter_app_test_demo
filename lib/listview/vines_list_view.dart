@@ -3,6 +3,8 @@ import 'package:flutter_app_test_demo/listview/vines_list_model.dart';
 import 'package:provider/provider.dart';
 
 class VinesListProviderView extends StatelessWidget {
+  const VinesListProviderView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -23,8 +25,7 @@ class VinesListView<T> extends StatefulWidget {
   final double itemWidth;
 
   const VinesListView({Key? key, required this.data, required this.itemWidth})
-      : assert(data != null),
-        assert(itemWidth >= 0),
+      : assert(itemWidth >= 0),
         super(key: key);
 
   @override
@@ -36,14 +37,14 @@ class _VinesListViewState extends State<VinesListView> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      context.read<VinesListModel>()..calculatePosition(4);
+      context.read<VinesListModel>().calculatePosition(4);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     context.watch<VinesListModel>()
-      ..setContext(context, widget.data.length, widget.itemWidth);
+      .setContext(context, widget.data.length, widget.itemWidth);
 
     return Consumer<VinesListModel>(
       builder: (context, model, child) => GestureDetector(
@@ -61,7 +62,7 @@ class _VinesListViewState extends State<VinesListView> {
   List<Widget> _generateWidgetList(VinesListModel model) {
     final widgetList = <Widget>[];
     if (model.offsetList.isEmpty) {
-      widgetList.add(SizedBox.shrink());
+      widgetList.add(const SizedBox.shrink());
       return widgetList;
     }
     for (int i = 0; i < widget.data.length; i++) {

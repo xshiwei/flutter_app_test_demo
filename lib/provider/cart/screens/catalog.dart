@@ -5,14 +5,17 @@ import 'package:flutter_app_test_demo/provider/cart/screens/cart.dart';
 import 'package:provider/provider.dart';
 
 class MyCatalog extends StatelessWidget {
+  const MyCatalog({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(slivers: [
         _MyAppBar(),
-        SliverToBoxAdapter(child: SizedBox(height: 12)),
+        const SliverToBoxAdapter(child: SizedBox(height: 12)),
         SliverList(
-          delegate: SliverChildBuilderDelegate((_, index) => _MyListItem(index)),
+          delegate:
+              SliverChildBuilderDelegate((_, index) => _MyListItem(index)),
         )
       ]),
     );
@@ -23,16 +26,16 @@ class _MyAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      title: Text('Catalog'),
+      title: const Text('Catalog'),
       floating: true,
       actions: [
         IconButton(
-          icon: Icon(Icons.shopping_cart),
+          icon: const Icon(Icons.shopping_cart),
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
+            Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
               builder: (_) => ChangeNotifierProvider.value(
                 value: Provider.of<CartModel>(context, listen: false),
-                child: MyCart(),
+                child: const MyCart(),
               ),
             ));
           },
@@ -49,7 +52,8 @@ class _MyListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final item = context.select<CatalogModel, Item>((value) => value.getByPosition(index));
+    final item = context
+        .select<CatalogModel, Item>((value) => value.getByPosition(index));
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -63,11 +67,11 @@ class _MyListItem extends StatelessWidget {
                 color: item.color,
               ),
             ),
-            SizedBox(width: 24),
+            const SizedBox(width: 24),
             Expanded(
               child: Text(item.name),
             ),
-            SizedBox(width: 24),
+            const SizedBox(width: 24),
             _AddButton(item: item),
           ],
         ),
@@ -83,9 +87,10 @@ class _AddButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isInCart = context.select<CartModel, bool>((value) => value.items.contains(item));
+    final isInCart =
+        context.select<CartModel, bool>((value) => value.items.contains(item));
 
-    return FlatButton(
+    return ElevatedButton(
       onPressed: isInCart
           ? null
           : () {
@@ -96,8 +101,9 @@ class _AddButton extends StatelessWidget {
               var cart = context.read<CartModel>();
               cart.add(item);
             },
-      splashColor: Theme.of(context).primaryColor,
-      child: isInCart ? Icon(Icons.check, semanticLabel: 'ADDED') : Text('ADD'),
+      child: isInCart
+          ? const Icon(Icons.check, semanticLabel: 'ADDED')
+          : const Text('ADD'),
     );
   }
 }

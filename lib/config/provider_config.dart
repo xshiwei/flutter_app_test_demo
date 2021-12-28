@@ -15,9 +15,7 @@ class ProviderConfig {
   static ProviderConfig? _instance;
 
   static ProviderConfig _getInstance() {
-    if (_instance == null) {
-      _instance = ProviderConfig._internal();
-    }
+    _instance ??= ProviderConfig._internal();
     return _instance!;
   }
 
@@ -64,11 +62,11 @@ class ProviderConfig {
         //主要用于异步执行任务，并且可以直接通过Provider.of<int>(context)找到
         FutureProvider<FutureBean1>(
           create: (_) => FutureProviderModel().testFuture(),
-          initialData: FutureBean1(0),
+          initialData: const FutureBean1(0),
         ),
         FutureProvider<FutureBean2>(
           create: (_) => FutureProviderModel().testFuture2(),
-          initialData: FutureBean2(0),
+          initialData: const FutureBean2(0),
         )
       ],
       child: child,

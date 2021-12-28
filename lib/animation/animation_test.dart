@@ -7,6 +7,8 @@ import 'package:supercharged/supercharged.dart';
 import 'animation_model.dart';
 
 class AnimationTest extends StatelessWidget {
+  const AnimationTest({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +21,7 @@ class AnimationTest extends StatelessWidget {
                   _Anim1(),
                   _Anim2Column(),
                   _Anim3(),
-                  TestMessageTip(),
+                  const TestMessageTip(),
                 ],
               ),
             ),
@@ -45,7 +47,7 @@ class _Anim1 extends StatelessWidget {
               alignment: Alignment.center,
               child: child,
             ),
-        child: Text("Anim1"));
+        child: const Text("Anim1"));
   }
 }
 
@@ -91,16 +93,16 @@ class _Anim2 extends StatelessWidget {
               height: value.get(Anim2Enum.width),
               child: child,
             ),
-        child: Text("Anim2"));
+        child: const Text("Anim2"));
   }
 }
 
 class _Anim2Play extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
+    return ElevatedButton(
       onPressed: Provider.of<Anim2Model>(context, listen: false).play,
-      child: Text("play"),
+      child: const Text("play"),
     );
   }
 }
@@ -108,9 +110,9 @@ class _Anim2Play extends StatelessWidget {
 class _Anim2Stop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
+    return ElevatedButton(
       onPressed: Provider.of<Anim2Model>(context, listen: false).stop,
-      child: Text("stop"),
+      child: const Text("stop"),
     );
   }
 }
@@ -118,9 +120,9 @@ class _Anim2Stop extends StatelessWidget {
 class _Anim2Reverse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
+    return ElevatedButton(
       onPressed: Provider.of<Anim2Model>(context, listen: false).reverse,
-      child: Text("reverse"),
+      child: const Text("reverse"),
     );
   }
 }
@@ -176,9 +178,9 @@ class _Anim3Play extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     debugPrint("play build");
-    return RaisedButton(
+    return ElevatedButton(
       onPressed: Provider.of<Anim3Model>(context, listen: false).play,
-      child: Text("play"),
+      child: const Text("play"),
     );
   }
 }
@@ -186,9 +188,9 @@ class _Anim3Play extends StatelessWidget {
 class _Anim3Stop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
+    return ElevatedButton(
       onPressed: Provider.of<Anim3Model>(context, listen: false).stop,
-      child: Text("stop"),
+      child: const Text("stop"),
     );
   }
 }

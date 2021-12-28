@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'models/count_model.dart';
 
 class ProviderTest1 extends StatelessWidget {
+  const ProviderTest1({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     debugPrint("home build");
@@ -10,18 +12,18 @@ class ProviderTest1 extends StatelessWidget {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+            children: const <Widget>[
               Text(
                 'You have pushed the button this many times:',
               ),
-              const Count(),
+              Count(),
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () => context.read<CountModel>().incrementCounter(),
           tooltip: 'Increment',
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
     );
   }
