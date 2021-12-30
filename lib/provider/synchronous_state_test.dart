@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_test_demo/router/router.dart';
+import 'package:go_router/go_router.dart';
 
 class SynchronousModel {
   SynchronousModel(this.count);
@@ -26,12 +28,8 @@ class _SynchronousTextState extends State<SynchronousText> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () async {
-        await Navigator.push<dynamic>(
-            context,
-            MaterialPageRoute<dynamic>(
-                builder: (_) => _SynchronousStatePage(
-                      model: _model,
-                    )));
+        context.goNamed(RouterPath.providerItem,
+            params: {'name': 'SynchronousText'}, extra: _model);
         setState(() {});
       },
       child: Text("count: ${_model.count}"),
@@ -39,8 +37,8 @@ class _SynchronousTextState extends State<SynchronousText> {
   }
 }
 
-class _SynchronousStatePage extends StatefulWidget {
-  const _SynchronousStatePage({
+class SynchronousStatePage extends StatefulWidget {
+  const SynchronousStatePage({
     Key? key,
     required this.model,
   }) : super(key: key);
@@ -51,7 +49,7 @@ class _SynchronousStatePage extends StatefulWidget {
   _SynchronousStatePageState createState() => _SynchronousStatePageState();
 }
 
-class _SynchronousStatePageState extends State<_SynchronousStatePage> {
+class _SynchronousStatePageState extends State<SynchronousStatePage> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(

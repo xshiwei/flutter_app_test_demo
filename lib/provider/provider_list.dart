@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_test_demo/provider/cart/screens/catalog.dart';
-import 'package:flutter_app_test_demo/provider/provider_test3.dart';
 import 'package:flutter_app_test_demo/provider/synchronous_state_test.dart';
-
-
-import 'provider_test1.dart';
-import 'provider_test2.dart';
-import 'stream_test.dart';
-import '../config/provider_config.dart';
-import 'future_provider_test.dart';
-import 'provider_proxy_test.dart';
+import 'package:flutter_app_test_demo/router/router.dart';
+import 'package:go_router/go_router.dart';
 
 class ProviderList extends StatelessWidget {
   const ProviderList({Key? key}) : super(key: key);
@@ -24,74 +16,65 @@ class ProviderList extends StatelessWidget {
               child: Column(
                 children: [
                   ElevatedButton(
-                    onPressed: (){
-                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
-                        builder: (_) => ProviderConfig.instance.getCountModel(child: const ProviderTest1()),
-                      ));
+                    onPressed: () {
+                      context.goNamed(RouterPath.providerItem,
+                          params: {'name': 'Provider Test1'});
                     },
                     child: const Text("Provider Test1"),
                   ),
                   ElevatedButton(
-                    onPressed: (){
-                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
-                        builder: (_) => ProviderConfig.instance.getCountModel(child: const ProviderTest2()),
-                      ));
+                    onPressed: () {
+                      context.goNamed(RouterPath.providerItem,
+                          params: {'name': 'Provider Test2'});
                     },
                     child: const Text("Provider Test2"),
                   ),
                   ElevatedButton(
-                    onPressed: (){
-                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
-                        builder: (_) => ProviderConfig.instance.getCountModel(child: const ProviderTest3()),
-                      ));
+                    onPressed: () {
+                      context.goNamed(RouterPath.providerItem,
+                          params: {'name': 'Provider Test3'});
                     },
                     child: const Text("Provider Test3"),
                   ),
                   ElevatedButton(
-                    onPressed: (){
-                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
-                        builder: (_) => const StreamTest(),
-                      ));
+                    onPressed: () {
+                      context.goNamed(RouterPath.providerItem,
+                          params: {'name': 'Stream Test'});
                     },
                     child: const Text("Stream Test"),
                   ),
                   ElevatedButton(
-                    onPressed: (){
-                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
-                        builder: (_) => ProviderConfig.instance.getProviderProxy(child: const ProviderProxyTest()),
-                      ));
+                    onPressed: () {
+                      context.goNamed(RouterPath.providerItem,
+                          params: {'name': 'Provider Proxy Test'});
                     },
                     child: const Text("Provider Proxy Test"),
                   ),
                   ElevatedButton(
-                    onPressed: (){
-                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
-                        builder: (_) => ProviderConfig.instance.getChangeNotifierProviderProxy(child: const ChangeNotifierProxyTest()),
-                      ));
+                    onPressed: () {
+                      context.goNamed(RouterPath.providerItem,
+                          params: {'name': 'ChangeNotifier Proxy Test'});
                     },
                     child: const Text("ChangeNotifier Proxy Test"),
                   ),
                   ElevatedButton(
-                    onPressed: (){
-                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
-                        builder: (_) => ProviderConfig.instance.getFutureProvider(child: const FutureProviderTest()),
-                      ));
+                    onPressed: () {
+                      context.goNamed(RouterPath.providerItem,
+                          params: {'name': 'Future Provider Test'});
                     },
                     child: const Text("Future Provider Test"),
                   ),
                   ElevatedButton(
-                    onPressed: (){
-                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
-                        builder: (_) => ProviderConfig.instance.getStreamProvider(child: const StreamProviderTest()),
-                      ));
+                    onPressed: () {
+                      context.goNamed(RouterPath.providerItem,
+                          params: {'name': 'Stream Provider Test'});
                     },
                     child: const Text("Stream Provider Test"),
                   ),
                   ElevatedButton(
-                    onPressed: (){
-                      Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
-                        builder: (_) => ProviderConfig.instance.getCatalogModel(child: const MyCatalog()),
-                      ));
+                    onPressed: () {
+                      context.goNamed(RouterPath.providerItem,
+                          params: {'name': 'MyCatalog'});
                     },
                     child: const Text("MyCatalog"),
                   ),
@@ -117,4 +100,3 @@ class ProviderList extends StatelessWidget {
 ///changes 应该只管理数据，类似的控件点击事件在控件内部实现。
 
 ///ChangeNotifierProvider.value 可以复用changes，给另一个页面复用changes
-
