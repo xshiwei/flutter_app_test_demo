@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_test_demo/provider/cart/screens/catalog.dart';
 import 'package:flutter_app_test_demo/provider/provider_test3.dart';
+import 'package:flutter_app_test_demo/provider/synchronous_state_test.dart';
 
 
 import 'provider_test1.dart';
@@ -94,6 +95,7 @@ class ProviderList extends StatelessWidget {
                     },
                     child: const Text("MyCatalog"),
                   ),
+                  const SynchronousText(),
                 ],
               ),
             ),
